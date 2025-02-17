@@ -1,7 +1,8 @@
 import sqlite3
 import os
 
-conn = sqlite3.connect(rf"C:\Users\{os.getlogin()}\loliland\LoliAccounts.db", check_same_thread=False)
+user_folder = os.environ["USERPROFILE"]
+conn = sqlite3.connect(rf"{user_folder}\loliland\LoliAccounts.db", check_same_thread=False)
 cursor = conn.cursor()
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS accounts (
