@@ -1,0 +1,7 @@
+.git
+Loliland_acc_manager.spec
+build/
+dist/
+venv/
+__pycache__/
+icon.png
