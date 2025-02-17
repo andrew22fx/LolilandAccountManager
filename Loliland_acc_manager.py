@@ -142,6 +142,7 @@ def main(page: ft.Page):
 
     file_picker = ft.FilePicker(on_result=get_path)
 
+    user_folder = os.environ["USERPROFILE"]
     # Пустая страница
     def start(e):
         if selected_row_index is not None or selected_row_index == 0:
@@ -149,7 +150,8 @@ def main(page: ft.Page):
                 if os.path.isfile(launcher_path):
                     cursor.execute('SELECT username, password FROM accounts WHERE username = ?', (table.rows[selected_row_index].cells[0].content.value, ))
                     user_data = cursor.fetchone()
-                    with open(rf'C:\Users\{os.getlogin()}\loliland\auth.json', 'w', encoding='utf-8') as file:
+                    nonlocal user_folder
+                    with open(rf'{user_folder}\loliland\auth.json', 'w', encoding='utf-8') as file:
                         json.dump({'login': str(user_data[0]), 'password': str(user_data[1])}, file, indent=4, ensure_ascii=False)
                     app_path = launcher_path
                     error_text.value=''
